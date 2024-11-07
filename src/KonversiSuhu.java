@@ -1,3 +1,9 @@
+
+import java.util.Enumeration;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -26,6 +32,8 @@ public class KonversiSuhu extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jSpinner1 = new javax.swing.JSpinner();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -33,13 +41,13 @@ public class KonversiSuhu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        listSuhu = new javax.swing.JComboBox<>();
+        inputAngka = new javax.swing.JTextField();
+        result = new javax.swing.JTextField();
+        Cel = new javax.swing.JRadioButton();
+        Kel = new javax.swing.JRadioButton();
+        Rea = new javax.swing.JRadioButton();
+        Fah = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -59,140 +67,161 @@ public class KonversiSuhu extends javax.swing.JFrame {
         getContentPane().add(jPanel1, java.awt.BorderLayout.NORTH);
 
         jPanel2.setBackground(new java.awt.Color(108, 200, 200));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "KONVERSI SUHU", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "KONVERSI SUHU", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(0, 0, 153))); // NOI18N
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         jLabel1.setText("Masukan Suhu :");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 18, 5);
         jPanel2.add(jLabel1, gridBagConstraints);
 
-        jLabel2.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         jLabel2.setText("Hasil Konversi :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(6, 5, 7, 5);
+        gridBagConstraints.insets = new java.awt.Insets(6, 5, 15, 5);
         jPanel2.add(jLabel2, gridBagConstraints);
 
-        jButton1.setText("jButton1");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 11;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 10;
-        gridBagConstraints.insets = new java.awt.Insets(6, 5, 7, 5);
-        jPanel2.add(jButton1, gridBagConstraints);
-
-        jButton2.setText("jButton2");
+        jButton1.setText("Konversi");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.insets = new java.awt.Insets(6, 5, 7, 5);
-        jPanel2.add(jButton2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(13, 15, 7, 0);
+        jPanel2.add(jButton1, gridBagConstraints);
 
-        jButton3.setText("jButton3");
+        jButton2.setText("Ulang");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 10;
-        gridBagConstraints.insets = new java.awt.Insets(6, 5, 7, 5);
+        gridBagConstraints.insets = new java.awt.Insets(13, 15, 7, 0);
+        jPanel2.add(jButton2, gridBagConstraints);
+
+        jButton3.setText("Keluar");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(13, 15, 7, 0);
         jPanel2.add(jButton3, gridBagConstraints);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Convert", "Celsius", "Fahrenheit", "Kelvin", "Reamur" }));
+        listSuhu.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
+        listSuhu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Convert", "Celsius", "Fahrenheit", "Kelvin", "Reamur" }));
+        listSuhu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listSuhuActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 10;
         gridBagConstraints.ipady = 8;
-        gridBagConstraints.insets = new java.awt.Insets(19, 5, 12, 5);
-        jPanel2.add(jComboBox1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(19, 15, 12, 0);
+        jPanel2.add(listSuhu, gridBagConstraints);
 
-        jTextField1.setText("jTextField1");
+        inputAngka.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputAngkaActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 20, 5);
-        jPanel2.add(jTextField1, gridBagConstraints);
-
-        jTextField2.setText("jTextField2");
+        gridBagConstraints.ipadx = 10;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.insets = new java.awt.Insets(5, 15, 20, 0);
+        jPanel2.add(inputAngka, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipady = 21;
-        gridBagConstraints.insets = new java.awt.Insets(6, 5, 7, 5);
-        jPanel2.add(jTextField2, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 15, 7, 0);
+        jPanel2.add(result, gridBagConstraints);
 
-        jRadioButton1.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jRadioButton1.setText("jRadioButton1");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(Cel);
+        Cel.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        Cel.setText("Celcius");
+        Cel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                CelActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(1, 0, 2, 0);
-        jPanel2.add(jRadioButton1, gridBagConstraints);
-
-        jRadioButton2.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jRadioButton2.setText("jRadioButton2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(1, 0, 2, 0);
-        jPanel2.add(jRadioButton2, gridBagConstraints);
-
-        jRadioButton3.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jRadioButton3.setText("jRadioButton3");
-        gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(1, 0, 2, 0);
-        jPanel2.add(jRadioButton3, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(1, 10, 2, 0);
+        jPanel2.add(Cel, gridBagConstraints);
 
-        jRadioButton4.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jRadioButton4.setText("jRadioButton4");
+        buttonGroup1.add(Kel);
+        Kel.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        Kel.setText("Kelvin");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(1, 0, 2, 0);
-        jPanel2.add(jRadioButton4, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(1, 10, 2, 0);
+        jPanel2.add(Kel, gridBagConstraints);
 
-        jLabel3.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        buttonGroup1.add(Rea);
+        Rea.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        Rea.setText("Reamur");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(1, 10, 2, 0);
+        jPanel2.add(Rea, gridBagConstraints);
+
+        buttonGroup1.add(Fah);
+        Fah.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        Fah.setText("Fahrenheit");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(1, 10, 2, 0);
+        jPanel2.add(Fah, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         jLabel3.setText("Pilih Jenis Suhu Pertama :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(1, 0, 8, 0);
         jPanel2.add(jLabel3, gridBagConstraints);
 
-        jLabel4.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         jLabel4.setText("Pilih Jenis Suhu Kedua :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(1, 0, 0, 0);
         jPanel2.add(jLabel4, gridBagConstraints);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
@@ -200,10 +229,88 @@ public class KonversiSuhu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void CelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_CelActionPerformed
 
+    private void inputAngkaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputAngkaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputAngkaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+        // Ambil suhu input dari pengguna
+        double inputTemp = Double.parseDouble(inputAngka.getText());
+
+        // Ambil unit asal dari JComboBox
+        String fromUnit = (String) listSuhu.getSelectedItem();
+        int cekList = listSuhu.getSelectedIndex();
+
+        // Validasi: Pastikan pengguna telah memilih unit asal di ComboBox
+        if (fromUnit != null && !fromUnit.isEmpty() && cekList != 0) {
+        } else {
+            JOptionPane.showMessageDialog(this, "Silahkan pilih jenis suhu asal!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+            }
+        // Menentukan radio button yang dipilih
+            String radio;
+        if (Cel.isSelected()) {
+            radio = "Celsius";
+        } else if (Fah.isSelected()) {
+            radio = "Fahrenheit";
+        } else if (Kel.isSelected()) {
+            radio = "Kelvin";
+        } else if (Rea.isSelected()) {
+            radio = "Reamur";
+        } else {
+            // Jika tidak ada radio button yang dipilih, tampilkan pesan
+            JOptionPane.showMessageDialog(this, "Silahkan pilih jenis suhu tujuan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        // Panggil metode konversi suhu
+        double convertTemperature = convertTemperature(inputTemp, fromUnit, radio);
+
+        // Tampilkan hasil konversi
+        result.setText(convertTemperature + " " + radio);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Masukkan nilai suhu yang valid.", "Kesalahan Input", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void listSuhuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listSuhuActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_listSuhuActionPerformed
+
+     private double convertTemperature(double temp, String fromUnit, String toUnit) {
+    // Konversi dari unit asal ke Celsius sebagai langkah antara
+    double tempInCelsius;
+    switch (fromUnit) {
+        case "Celsius" -> tempInCelsius = temp;
+        case "Fahrenheit" -> tempInCelsius = (temp - 32) * 5 / 9;
+        case "Kelvin" -> tempInCelsius = temp - 273.15;
+        case "Reamur" -> tempInCelsius = temp * 5 / 4;
+        default -> throw new IllegalArgumentException("Unit tidak dikenal: " + fromUnit);
+    }
+
+    // Konversi dari Celsius ke unit tujuan
+    switch (toUnit) {
+        case "Celsius" -> {
+            return tempInCelsius;
+        }
+        case "Fahrenheit" -> {
+            return tempInCelsius * 9 / 5 + 32;
+        }
+        case "Kelvin" -> {
+            return tempInCelsius + 273.15;
+        }
+        case "Reamur" -> {
+            return tempInCelsius * 4 / 5;
+        }
+        default -> throw new IllegalArgumentException("Unit tidak dikenal: " + toUnit);
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -240,21 +347,23 @@ public class KonversiSuhu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton Cel;
+    private javax.swing.JRadioButton Fah;
+    private javax.swing.JRadioButton Kel;
+    private javax.swing.JRadioButton Rea;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField inputAngka;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JComboBox<String> listSuhu;
+    private javax.swing.JTextField result;
     // End of variables declaration//GEN-END:variables
 }
