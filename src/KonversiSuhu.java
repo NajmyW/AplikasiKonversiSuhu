@@ -21,7 +21,6 @@ public class KonversiSuhu extends javax.swing.JFrame {
     public KonversiSuhu() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,6 +101,11 @@ public class KonversiSuhu extends javax.swing.JFrame {
         jPanel2.add(jButton1, gridBagConstraints);
 
         jButton2.setText("Ulang");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 11;
@@ -111,6 +115,11 @@ public class KonversiSuhu extends javax.swing.JFrame {
         jPanel2.add(jButton2, gridBagConstraints);
 
         jButton3.setText("Keluar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 11;
@@ -151,6 +160,9 @@ public class KonversiSuhu extends javax.swing.JFrame {
         gridBagConstraints.ipady = 10;
         gridBagConstraints.insets = new java.awt.Insets(5, 15, 20, 0);
         jPanel2.add(inputAngka, gridBagConstraints);
+
+        result.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        result.setEnabled(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
@@ -216,7 +228,7 @@ public class KonversiSuhu extends javax.swing.JFrame {
         jPanel2.add(jLabel3, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
-        jLabel4.setText("Pilih Jenis Suhu Kedua :");
+        jLabel4.setText("Konversi ke Suhu :");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
@@ -267,9 +279,11 @@ public class KonversiSuhu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Silahkan pilih jenis suhu tujuan!", "Peringatan", JOptionPane.WARNING_MESSAGE);
             return;
         }
+              // Membuat objek dari TemperatureConverter
+            TemperatureConverter converter = new TemperatureConverter();
 
-        // Panggil metode konversi suhu
-        double convertTemperature = convertTemperature(inputTemp, fromUnit, radio);
+            // Panggil metode konversi suhu
+            double convertTemperature = converter.convertTemperature(inputTemp, radio,fromUnit);
 
         // Tampilkan hasil konversi
         result.setText(convertTemperature + " " + radio);
@@ -283,34 +297,20 @@ public class KonversiSuhu extends javax.swing.JFrame {
         
     }//GEN-LAST:event_listSuhuActionPerformed
 
-     private double convertTemperature(double temp, String fromUnit, String toUnit) {
-    // Konversi dari unit asal ke Celsius sebagai langkah antara
-    double tempInCelsius;
-    switch (fromUnit) {
-        case "Celsius" -> tempInCelsius = temp;
-        case "Fahrenheit" -> tempInCelsius = (temp - 32) * 5 / 9;
-        case "Kelvin" -> tempInCelsius = temp - 273.15;
-        case "Reamur" -> tempInCelsius = temp * 5 / 4;
-        default -> throw new IllegalArgumentException("Unit tidak dikenal: " + fromUnit);
-    }
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        inputAngka.setText("");
+        result.setText("");
+        listSuhu.setSelectedIndex(0);
+        buttonGroup1.clearSelection();
+        inputAngka.requestFocus();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    // Konversi dari Celsius ke unit tujuan
-    switch (toUnit) {
-        case "Celsius" -> {
-            return tempInCelsius;
-        }
-        case "Fahrenheit" -> {
-            return tempInCelsius * 9 / 5 + 32;
-        }
-        case "Kelvin" -> {
-            return tempInCelsius + 273.15;
-        }
-        case "Reamur" -> {
-            return tempInCelsius * 4 / 5;
-        }
-        default -> throw new IllegalArgumentException("Unit tidak dikenal: " + toUnit);
-    }
-}
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */

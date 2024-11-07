@@ -114,6 +114,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ulang"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="3" gridY="11" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="10" insetsTop="13" insetsLeft="15" insetsBottom="7" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -124,6 +127,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Keluar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="4" gridY="11" gridWidth="1" gridHeight="1" fill="1" ipadX="0" ipadY="10" insetsTop="13" insetsLeft="15" insetsBottom="7" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -168,6 +174,12 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="result">
+          <Properties>
+            <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="0" type="rgb"/>
+            </Property>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
               <GridBagConstraints gridX="2" gridY="9" gridWidth="3" gridHeight="1" fill="1" ipadX="0" ipadY="21" insetsTop="6" insetsLeft="15" insetsBottom="7" insetsRight="0" anchor="10" weightX="0.0" weightY="0.0"/>
@@ -259,7 +271,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Bookman Old Style" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Pilih Jenis Suhu Kedua :"/>
+            <Property name="text" type="java.lang.String" value="Konversi ke Suhu :"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
